@@ -5,14 +5,20 @@ from player import *
 def main():
 	pygame.init()
 	player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+	dt = 0
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+	fps_clock = pygame.time.Clock()
 	while True:
 		for event in pygame.event.get():
 			 if event.type == pygame.QUIT:
 					return
 		screen.fill((0,0,0))
+		player1.update(dt)
 		player1.draw(screen)
 		pygame.display.flip()
+		dt = fps_clock.tick(60) / 1000
+
+
 
 	
 	print(f"""Starting Asteroids!
