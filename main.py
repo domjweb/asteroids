@@ -30,7 +30,12 @@ def main():
 					return
 		screen.fill((0,0,0))
 		updatable.update(dt)
+		shots_copy = shots_taken.copy()
 		for asteroid in asteroids:
+			for shot in shots_copy:
+				if asteroid.collision_check(shot) == True:
+					asteroid.split()
+					shot.kill()
 			if player1.collision_check(asteroid) == True:
 				print("Game Over!")
 				sys.exit()
